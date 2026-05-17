@@ -19,9 +19,11 @@ CLI (rune)
 
 ## 4) Quick start
 ```bash
+cp .env.example .env
+# set DOMAIN to your public DNS name first
 make build
-docker-compose up --build
-./bin/rune run https://github.com/foo/bar --backend http://localhost:8080
+docker compose up --build -d
+./bin/rune run https://github.com/foo/bar --backend https://$DOMAIN
 ```
 
 ## 5) Example CLI usage
