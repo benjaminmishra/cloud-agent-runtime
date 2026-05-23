@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"net/http"
 
 	"cloud-agent-runtime/backend"
 )
@@ -12,7 +13,7 @@ func main() {
 		log.Fatalf("failed to init session manager: %v", err)
 	}
 	server := backend.NewServer(manager)
-	if err := server.Router().Run(":8080"); err != nil {
+	if err := http.ListenAndServe(":8080", server.Handler()); err != nil {
 		log.Fatal(err)
 	}
 }
